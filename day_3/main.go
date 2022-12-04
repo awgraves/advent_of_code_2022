@@ -28,7 +28,7 @@ func getCommonRune(line string) rune {
 	panic("Not found")
 }
 
-func getBadgeRune(threeLines []string) rune {
+func getBadgeRune(threeLines [3]string) rune {
 	seen := make(map[rune]int)
 
 	for _, r := range threeLines[0] {
@@ -85,12 +85,12 @@ func main() {
 	totalPriority = 0
 Mainloop:
 	for {
-		group := []string{}
+		group := [3]string{}
 		for i := 0; i < 3; i++ {
 			if c := scanner.Scan(); !c {
 				break Mainloop
 			}
-			group = append(group, scanner.Text())
+			group[i] = scanner.Text()
 		}
 		r := getBadgeRune(group)
 		totalPriority += getPriorityOfRune(r)
